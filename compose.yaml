@@ -66,37 +66,37 @@ services:
     # extra_hosts:
     #   - host.docker.internal:host-gateway
 
-  ## Deploy Periphery container using this block,
-  ## or deploy the Periphery binary with systemd using
-  ## https://github.com/mbecker20/komodo/tree/main/scripts
-  periphery:
-    image: ghcr.io/mbecker20/periphery:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
-    labels:
-      komodo.skip: # Prevent Komodo from stopping with StopAllContainers
-    restart: unless-stopped
-    logging:
-      driver: ${COMPOSE_LOGGING_DRIVER:-local}
-    networks:
-      - default
-    env_file:
-      - .env
-      - /home/hugo/HomeLab/secrets/periphery.env
-    volumes:
-      ## Mount external docker socket
-      - /var/run/docker.sock:/var/run/docker.sock
-      ## Allow Periphery to see processes outside of container
-      - /proc:/proc
-      ## use self signed certs in docker volume,
-      ## or mount your own signed certs.
-      - ./ssl:/etc/komodo/ssl
-      ## manage repos in a docker volume,
-      ## or change it to an accessible host directory.
-      - /home/hugo/HomeLab/periphery-repos:/etc/komodo/repos
-      ## manage stack files in a docker volume,
-      ## or change it to an accessible host directory.
-      - /home/hugo/HomeLab/periphery-stacks:/home/hugo/HomeLab/periphery-stacks
-      ## Optionally mount a path to store compose files
-      # - /path/to/compose:/host/compose
+  # ## Deploy Periphery container using this block,
+  # ## or deploy the Periphery binary with systemd using
+  # ## https://github.com/mbecker20/komodo/tree/main/scripts
+  # periphery:
+  #   image: ghcr.io/mbecker20/periphery:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
+  #   labels:
+  #     komodo.skip: # Prevent Komodo from stopping with StopAllContainers
+  #   restart: unless-stopped
+  #   logging:
+  #     driver: ${COMPOSE_LOGGING_DRIVER:-local}
+  #   networks:
+  #     - default
+  #   env_file:
+  #     - .env
+  #     - /home/hugo/HomeLab/secrets/periphery.env
+  #   volumes:
+  #     ## Mount external docker socket
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     ## Allow Periphery to see processes outside of container
+  #     - /proc:/proc
+  #     ## use self signed certs in docker volume,
+  #     ## or mount your own signed certs.
+  #     - ./ssl:/etc/komodo/ssl
+  #     ## manage repos in a docker volume,
+  #     ## or change it to an accessible host directory.
+  #     - /home/hugo/HomeLab/periphery-repos:/etc/komodo/repos
+  #     ## manage stack files in a docker volume,
+  #     ## or change it to an accessible host directory.
+  #     - /home/hugo/HomeLab/periphery-stacks:/home/hugo/HomeLab/periphery-stacks
+  #     ## Optionally mount a path to store compose files
+  #     # - /path/to/compose:/host/compose
 
 volumes:
   # Mongo
