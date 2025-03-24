@@ -32,6 +32,12 @@ host = "https://komodo.evercode.se"
 ## Env: KOMODO_PORT
 ## Default: 9120
 port = 9120
+## This is the token used to authenticate core requests to periphery.
+## Ensure this matches a passkey in the connected periphery configs.
+## If the periphery servers don't have passkeys configured, this doesn't need to be changed.
+## Env: KOMODO_PASSKEY or KOMODO_PASSKEY_FILE
+## Required, no default
+passkey = ""
 
 ## Ensure a server with this address exists on Core
 ## upon first startup. Example: `https://periphery:8120`
